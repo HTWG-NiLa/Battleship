@@ -9,7 +9,7 @@ import main.java.model.IShip;
 public class Ship implements IShip {
 	
 	private List<Field> fields = new ArrayList<Field>();
-	private Rectangle2D shape;
+//	private Rectangle2D shape;
 
 	public boolean isDestroyed() {
 		for(Field each : fields) {
@@ -21,10 +21,10 @@ public class Ship implements IShip {
 	}
 
 	public void create(List<Field> destination) {
-		shape = new Rectangle2D.Double();
+//		shape = new Rectangle2D.Double();
 		for(Field each : destination) {
 			each.setShip(this);
-			shape.add(each.getArea());
+//			shape.add(each.getArea());
 		}
 		fields = new ArrayList<Field>(destination);
 	}
