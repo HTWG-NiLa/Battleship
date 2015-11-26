@@ -5,7 +5,7 @@ import java.awt.geom.Rectangle2D;
 
 import main.java.model.IField;
 
-public class Field implements IField {
+public class Cell implements IField {
 
 	private Ship occupyer;
 	private boolean bombed;
@@ -14,7 +14,7 @@ public class Field implements IField {
 //	private Point2D middle;
 //	private Rectangle2D area;
 	
-	public Field (Point2D point) {
+	public Cell (Point2D point) {
 //		middle = point;
 //		this.setArea(new Rectangle2D.Double(middle.getX() - 1, middle.getY() - 1, 2, 2));
 		occupyer = null;

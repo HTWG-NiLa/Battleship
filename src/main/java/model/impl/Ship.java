@@ -7,12 +7,12 @@ import java.util.List;
 import main.java.model.IShip;
 
 public class Ship implements IShip {
-	
-	private List<Field> fields = new ArrayList<Field>();
-//	private Rectangle2D shape;
+
+	private List<Cell> cells = new ArrayList<Cell>();
+	// private Rectangle2D shape;
 
 	public boolean isDestroyed() {
-		for(Field each : fields) {
+		for (Cell each : cells) {
 			if (!each.isBombed()) {
 				return false;
 			}
@@ -20,16 +20,11 @@ public class Ship implements IShip {
 		return true;
 	}
 
-	public void create(List<Field> destination) {
-//		shape = new Rectangle2D.Double();
-		for(Field each : destination) {
-			each.setShip(this);
-//			shape.add(each.getArea());
-		}
-		fields = new ArrayList<Field>(destination);
+	public void setFields(List<Cell> cells) {
+		this.cells = new ArrayList<Cell>(cells);
 	}
-	
+
 	public int getLength() {
-		return fields.size();
+		return cells.size();
 	}
 }
