@@ -28,4 +28,8 @@ public class Ship implements IShip {
 		}
 		fields = new ArrayList<Field>(destination);
 	}
+	
+	public int getLength() {
+		return fields.size();
+	}
 }

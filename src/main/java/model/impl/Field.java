@@ -9,19 +9,21 @@ public class Field implements IField {
 
 	private Ship occupyer;
 	private boolean bombed;
-	private Point2D middle;
+	private int x;
+	private int y;
+//	private Point2D middle;
 //	private Rectangle2D area;
 	
 	public Field (Point2D point) {
-		middle = point;
+//		middle = point;
 //		this.setArea(new Rectangle2D.Double(middle.getX() - 1, middle.getY() - 1, 2, 2));
 		occupyer = null;
 		bombed = false;
 	}
 
-	public Point2D getMiddle() {
-		return middle;
-	}
+//	public Point2D getMiddle() {
+//		return middle;
+//	}
 
 	public boolean isBombed() {
 		return bombed;
@@ -53,6 +55,22 @@ public class Field implements IField {
 //	public void setArea(Rectangle2D area) {
 //		this.area = area;
 //	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public void setY(int y) {
+		this.y = y;
+	}
+	
+	public int getX() {
+		return x;
+	}
+	
+	public int getY() {
+		return y;
+	}
 
 
 }
