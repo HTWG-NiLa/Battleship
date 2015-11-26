@@ -1,6 +1,15 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
+apply plugin: 'maven'
 
 repositories {
     mavenCentral()
+}
+
+task createPom << {
+	pom {
+		project {
+			inceptionYear '2015'
+		}
+	}.writeTo("pom.xml")
 }
