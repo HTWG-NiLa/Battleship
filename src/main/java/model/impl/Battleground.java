@@ -17,24 +17,11 @@ public class Battleground implements IBattleground {
 	}
 	//orientation: 0 -> rechts; 1 -> unten; 2 -> links; 3 -> oben
 	public void addShip(Ship ship, Cell destination, int orientation) {
-		int x = destination.getX();
-		int y = destination.getY();
-		
-		if(orientation == 0) {
-			for (int i = 0; i < ship.getLength(); i++) {
-				matrix[x + i][y].setShip(ship);
-			}
-		} else if (orientation == 1) {
-			for (int i = 0; i < ship.getLength(); i++) {
-				matrix[x][y + i].setShip(ship);
-			}
-		} else if (orientation == 2) {
-			for (int i = 0; i < ship.getLength(); i++) {
-				matrix[x - i][y].setShip(ship);
-			}
-		} else if (orientation == 3) {
-			for (int i = 0; i < ship.getLength(); i++) {
-				matrix[x][y - i].setShip(ship);
+		Orientation enum_orient = Orientation.getByCode(orientation);
+		if(enum_orient != null) {
+			Cell[] cells_to_modify = enum_orient.getAffectedCells(ship.getLength(), matrix, destination);
+			for(Cell c : cells_to_modify) {
+				c.setShip(ship);
 			}
 		}
 	}
