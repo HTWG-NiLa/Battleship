@@ -7,14 +7,20 @@ import main.java.model.IShip;
 
 public class Ship implements IShip {
 	
-	private Cell[] cells;
+	private List<Cell> cells;
 	private int length;
-	private boolean horizontal;
 	
+	private Orientation orientation;
 	
-	public Ship(boolean horizontal, int length) {
+	public Ship(int length) {
+		orientation = Orientation.NOT_DEFINED;
 		this.length = length;
-		cells = new Cell[length];
+		cells = new ArrayList<>(length);
+	}
+	public Ship(Orientation orient, int length) {
+		orientation = orient;
+		this.length = length;
+		cells = new ArrayList<>(length);
 	}
 	
 	public boolean isDestroyed() {
@@ -26,25 +32,27 @@ public class Ship implements IShip {
 		return true;
 	}
 	
+	public Orientation getOrientation() {
+		return orientation;
+	}
 
-	public void setCells(Cell[] cells) {
-		this.cells = cells;
+	public void setCells(List<Cell> cells) {
+		this.cells.clear();
+		for(Cell each : cells) {
+			if(each.getOccupyer() != null) {
+				throw new IllegalArgumentException("Cell is already occupied by another ship");
+			}
+			each.setOccupyer(this);
+			this.cells.add(each);
+		}
 	}
 	
-	public Cell[] getCells() {
+	public List<Cell> getCells() {
 		return cells;
 	}
 
 	public int getLength() {
 		return length;
-	}
-
-	public boolean isHorizontal() {
-		return horizontal;
-	}
-
-	public void setHorizontal(boolean horizontal) {
-		this.horizontal = horizontal;
 	}
 
 }

@@ -1,6 +1,8 @@
 package main.java.model.impl;
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import main.java.model.IBattleground;
 
@@ -31,16 +33,16 @@ public class Battleground implements IBattleground {
 		if(x >= length || y >= length) {
 			throw new IllegalArgumentException("Invalid destination point");
 		}
-		if(ship.isHorizontal()) {
+		List<Cell> destination_cells = new ArrayList<>();
+		if(ship.getOrientation() == Orientation.HORIZONTAL) {
 			for(int i = 0; i < ship.getLength(); i ++) {
-				ship.getCells()[i] = matrix[x][y + i];
-				ship.getCells()[i].setOccupyer(ship);
+				destination_cells.add(matrix[x][y + i]);
 			}
 		} else {
 			for(int i = 0; i < ship.getLength(); i ++) {
-				ship.getCells()[i] = matrix[x + i][y];
-				ship.getCells()[i].setOccupyer(ship);
+				destination_cells.add(matrix[x + i][y]);
 			}
 		}
+		ship.setCells(destination_cells);
 	}
 }
