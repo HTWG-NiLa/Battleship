@@ -10,9 +10,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import main.java.model.Enums.CellStatus;
+import main.java.model.Enums.Orientation;
 import main.java.model.impl.Battleground;
 import main.java.model.impl.Cell;
-import main.java.model.impl.Orientation;
 import main.java.model.impl.Ship;
 
 public class Battleground_Test {
@@ -41,14 +42,28 @@ public class Battleground_Test {
 		testee.addShip(ship, new Point(10, 10));
 	}
 	
-	@Test
-	public void bombing_a_cell_with_a_ship_returns_true() {
-		testee.addShip(ship, new Point(1, 1));
-		assertTrue(testee.bomb(new Point(1, 2)));
-	}
-	@Test
-	public void bombing_an_empty_cell_returns_false() {
-		assertFalse(testee.bomb(new Point(1,2)));
+	@Test(expected = IllegalArgumentException.class)
+	public void adding_a_ship_with_to_much_length_to_a_valid_position_throws_exception() {
+		testee.addShip(ship, new Point(5,5));
 	}
 	
+	@Test
+	public void bombing_a_cell_with_a_ship_returns_status_Bombed() {
+		testee.addShip(ship, new Point(1, 1));
+		CellStatus status = testee.bomb(new Point(1, 2));
+		assertEquals(status, CellStatus.BOMBED);
+	}
+	
+	@Test
+	public void bombing_an_empty_cell_returns_status_Empty() {
+		CellStatus status = testee.bomb(new Point(1,2));
+		assertEquals(status, CellStatus.EMPTY);
+	}
+	
+	@Test
+	public void destroying_a_ship_returns_status_destroyed() {
+		testee.addShip(new Ship(Orientation.HORIZONTAL, 1), new Point(0, 0));
+		CellStatus status = testee.bomb(new Point(0, 0));
+		assertEquals(status, CellStatus.DESTROYED);
+	}
 }

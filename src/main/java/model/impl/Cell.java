@@ -3,30 +3,35 @@ package main.java.model.impl;
 import java.awt.geom.Point2D;
 
 import main.java.model.ICell;
+import main.java.model.Enums.CellStatus;
 
 public class Cell implements ICell {
 
-	private boolean bombed;
+	private CellStatus status;
 	private Ship occupyer;
 	private int x;
 	private int y;
 
 	public Cell(Point2D point) {
-		bombed = false;
-		setOccupyer(null);
+		status = CellStatus.EMPTY;
+		occupyer = null;
 		x = (int) point.getX();
 		y = (int) point.getY();
 	}
 	
-	public boolean bomb() {
-		if(occupyer != null && !bombed) {
-			bombed = true;
+	public CellStatus bomb() {
+		if(status == CellStatus.BOMBED || status == CellStatus.DESTROYED) {
+			return CellStatus.INVALID;
+		} else if(status == CellStatus.EMPTY){
+			return CellStatus.EMPTY;
+		} else {
+			status = CellStatus.BOMBED;
+			return (occupyer.isDestroyed()) ? CellStatus.DESTROYED : CellStatus.BOMBED;
 		}
-		return bombed;
 	}
 	
 	public boolean isBombed() {
-		return bombed;
+		return status == CellStatus.BOMBED;
 	}
 
 	public void setX(int x) {
@@ -51,6 +56,7 @@ public class Cell implements ICell {
 
 	public void setOccupyer(Ship occupyer) {
 		this.occupyer = occupyer;
+		status = CellStatus.OCCUPIED;
 	}
 
 }

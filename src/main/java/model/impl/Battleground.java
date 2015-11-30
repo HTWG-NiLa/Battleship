@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.model.IBattleground;
+import main.java.model.Enums.CellStatus;
+import main.java.model.Enums.Orientation;
 
 public class Battleground implements IBattleground {
 	
@@ -21,7 +23,7 @@ public class Battleground implements IBattleground {
 		}
 	}
 	
-	public boolean bomb(Point destination) {
+	public CellStatus bomb(Point destination) {
 		int x = (int) destination.getX();
 		int y = (int) destination.getY();
 		return matrix[x][y].bomb();
@@ -32,6 +34,9 @@ public class Battleground implements IBattleground {
 		int y = (int) destination.getY();
 		if(x >= length || y >= length) {
 			throw new IllegalArgumentException("Invalid destination point");
+		}
+		if(x + ship.getLength() >= length || y + ship.getLength() >= length) {
+			throw new IllegalArgumentException("Ship is too long");
 		}
 		List<Cell> destination_cells = new ArrayList<>();
 		if(ship.getOrientation() == Orientation.HORIZONTAL) {

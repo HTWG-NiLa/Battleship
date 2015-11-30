@@ -1,9 +1,10 @@
 package main.java.model;
 
+import main.java.model.Enums.CellStatus;
+
 public interface ICell {
 
-//	Point2D getMiddle();
-	boolean bomb();
+	CellStatus bomb();
 	boolean isBombed();
 	void setX(int x);
 	void setY(int y);

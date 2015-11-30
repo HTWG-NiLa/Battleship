@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import main.java.model.IShip;
+import main.java.model.Enums.Orientation;
 
 public class Ship implements IShip {
 	
