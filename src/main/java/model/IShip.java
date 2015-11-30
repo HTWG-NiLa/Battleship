@@ -8,7 +8,9 @@ public interface IShip {
 	
 	boolean isDestroyed();
 	
-	void setFields(List<Cell> cells);
+	void setCells(Cell[] cells);
+	
+	Cell[] getCells();
 	
 	int getLength();
 

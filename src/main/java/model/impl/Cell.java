@@ -2,39 +2,31 @@ package main.java.model.impl;
 
 import java.awt.geom.Point2D;
 
-import main.java.model.IField;
+import main.java.model.ICell;
 
-public class Cell implements IField {
+public class Cell implements ICell {
 
-	private Ship occupyer;
 	private boolean bombed;
+	private Ship occupyer;
 	private int x;
 	private int y;
 
 	public Cell(Point2D point) {
-		occupyer = null;
 		bombed = false;
+		setOccupyer(null);
 		x = (int) point.getX();
 		y = (int) point.getY();
 	}
-
-	public boolean isBombed() {
+	
+	public boolean bomb() {
+		if(occupyer != null && !bombed) {
+			bombed = true;
+		}
 		return bombed;
 	}
-
-	public boolean bomb() throws Exception {
-		if (bombed) {
-			throw new Exception();
-		}
-		bombed = true;
-		if (occupyer == null) {
-			return false;
-		}
-		return true;
-	}
-
-	public void setShip(Ship ship) {
-		occupyer = ship;
+	
+	public boolean isBombed() {
+		return bombed;
 	}
 
 	public void setX(int x) {
@@ -51,6 +43,14 @@ public class Cell implements IField {
 
 	public int getY() {
 		return y;
+	}
+
+	public Ship getOccupyer() {
+		return occupyer;
+	}
+
+	public void setOccupyer(Ship occupyer) {
+		this.occupyer = occupyer;
 	}
 
 }

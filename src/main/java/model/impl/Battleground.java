@@ -1,27 +1,41 @@
 package main.java.model.impl;
 
+import java.awt.Point;
+
 import main.java.model.IBattleground;
 
 public class Battleground implements IBattleground {
 	
 	private Cell[][] matrix;
+	private int length;
 	
 	public Battleground(int length) {
+		this.length = length;
 		matrix = new Cell[length][length];
 		for(int x = 0; x < length; x++) {
 			for (int y = 0; y < length; y++) {
-				matrix[x][y].setX(x);
-				matrix[x][y].setY(y);
+				matrix[x][y] = new Cell(new Point(x,y));
 			}
 		}
 	}
-	//orientation: 0 -> rechts; 1 -> unten; 2 -> links; 3 -> oben
-	public void addShip(Ship ship, Cell destination, int orientation) {
-		Orientation enum_orient = Orientation.getByCode(orientation);
-		if(enum_orient != null) {
-			Cell[] cells_to_modify = enum_orient.getAffectedCells(ship.getLength(), matrix, destination);
-			for(Cell c : cells_to_modify) {
-				c.setShip(ship);
+	
+	public boolean bomb(Point destination) {
+		return false;
+	}
+	
+	public void addShip(Ship ship, Point destination) {
+		int x = (int) destination.getX();
+		int y = (int) destination.getY();
+		if(x >= length || y >= length) {
+			throw new IllegalArgumentException("Invalid destination point");
+		}
+		if(ship.isHorizontal()) {
+			for(int i = 0; i < ship.getLength(); i ++) {
+				ship.getCells()[i] = matrix[x][y + i];
+			}
+		} else {
+			for(int i = 0; i < ship.getLength(); i ++) {
+				ship.getCells()[i] = matrix[x + i][y];
 			}
 		}
 	}
