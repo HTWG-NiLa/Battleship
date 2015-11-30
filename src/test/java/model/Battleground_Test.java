@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 
 import java.awt.Point;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,6 +37,12 @@ public class Battleground_Test {
 	@Test(expected = IllegalArgumentException.class)
 	public void adding_a_ship_to_invalid_position_throws_exception() {
 		testee.addShip(ship, new Point(10, 10));
+	}
+	
+	@Test
+	public void bombing_a_cell_with_a_ship_returns_true() {
+		testee.addShip(ship, new Point(1, 1));
+		Assert.assertTrue(testee.bomb(new Point(2, 1)));
 	}
 
 }

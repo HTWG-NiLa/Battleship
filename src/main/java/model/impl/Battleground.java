@@ -20,7 +20,9 @@ public class Battleground implements IBattleground {
 	}
 	
 	public boolean bomb(Point destination) {
-		return false;
+		int x = (int) destination.getX();
+		int y = (int) destination.getY();
+		return matrix[x][y].bomb();
 	}
 	
 	public void addShip(Ship ship, Point destination) {
@@ -32,10 +34,12 @@ public class Battleground implements IBattleground {
 		if(ship.isHorizontal()) {
 			for(int i = 0; i < ship.getLength(); i ++) {
 				ship.getCells()[i] = matrix[x][y + i];
+				ship.getCells()[i].setOccupyer(ship);
 			}
 		} else {
 			for(int i = 0; i < ship.getLength(); i ++) {
 				ship.getCells()[i] = matrix[x + i][y];
+				ship.getCells()[i].setOccupyer(ship);
 			}
 		}
 	}
