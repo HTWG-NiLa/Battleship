@@ -1,6 +1,6 @@
-package main.java.model;
+package model;
 
-import main.java.model.impl.Ship;
+import model.impl.Ship;
 
 public interface IPlayer {
 	

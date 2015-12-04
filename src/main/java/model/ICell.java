@@ -1,6 +1,6 @@
-package main.java.model;
+package model;
 
-import main.java.model.Enums.CellStatus;
+import model.Enums.CellStatus;
 
 public interface ICell {
 

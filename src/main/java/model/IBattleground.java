@@ -1,9 +1,9 @@
-package main.java.model;
+package model;
 
 import java.awt.Point;
 
-import main.java.model.Enums.CellStatus;
-import main.java.model.impl.Ship;
+import model.Enums.CellStatus;
+import model.impl.Ship;
 
 public interface IBattleground {
 	

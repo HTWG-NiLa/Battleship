@@ -1,8 +1,8 @@
-package main.java.model;
+package model;
 
 import java.util.List;
 
-import main.java.model.impl.Cell;
+import model.impl.Cell;
 
 public interface IShip {
 	

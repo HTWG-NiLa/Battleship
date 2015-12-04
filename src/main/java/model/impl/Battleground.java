@@ -1,12 +1,12 @@
-package main.java.model.impl;
+package model.impl;
 
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.model.IBattleground;
-import main.java.model.Enums.CellStatus;
-import main.java.model.Enums.Orientation;
+import model.IBattleground;
+import model.Enums.CellStatus;
+import model.Enums.Orientation;
 
 public class Battleground implements IBattleground {
 	

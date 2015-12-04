@@ -1,9 +1,9 @@
-package main.java.model.impl;
+package model.impl;
 
 import java.awt.geom.Point2D;
 
-import main.java.model.ICell;
-import main.java.model.Enums.CellStatus;
+import model.ICell;
+import model.Enums.CellStatus;
 
 public class Cell implements ICell {
 

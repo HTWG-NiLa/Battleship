@@ -1,4 +1,4 @@
-package test.java.model;
+package model;
 
 import static org.junit.Assert.assertEquals;
 
@@ -8,11 +8,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import main.java.model.Enums.CellStatus;
-import main.java.model.Enums.Orientation;
-import main.java.model.impl.Battleground;
-import main.java.model.impl.Cell;
-import main.java.model.impl.Ship;
+import model.Enums.CellStatus;
+import model.Enums.Orientation;
+import model.impl.Battleground;
+import model.impl.Cell;
+import model.impl.Ship;
 
 public class Battleground_Test {
 	
