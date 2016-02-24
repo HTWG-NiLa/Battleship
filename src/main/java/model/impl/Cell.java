@@ -1,62 +1,48 @@
 package model.impl;
 
-import java.awt.geom.Point2D;
-
 import model.ICell;
 import model.Enums.CellStatus;
 
 public class Cell implements ICell {
 
 	private CellStatus status;
-	private Ship occupyer;
-	private int x;
-	private int y;
+	private Ship ship;
 
-	public Cell(Point2D point) {
-		status = CellStatus.EMPTY;
-		occupyer = null;
-		x = (int) point.getX();
-		y = (int) point.getY();
+	public Cell() {
+		ship = null;
+		status = CellStatus.WATER;
 	}
-	
-	public CellStatus bomb() {
-		if(status == CellStatus.BOMBED || status == CellStatus.DESTROYED) {
-			return CellStatus.INVALID;
-		} else if(status == CellStatus.EMPTY){
-			return CellStatus.EMPTY;
-		} else {
-			status = CellStatus.BOMBED;
-			return (occupyer.isDestroyed()) ? CellStatus.DESTROYED : CellStatus.BOMBED;
-		}
-	}
-	
-	public boolean isBombed() {
-		return status == CellStatus.BOMBED;
+	public Cell(CellStatus status) {
+		ship = null;
+		this.status = status;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	@Override
+	public void setStatus(CellStatus status) {
+		this.status = status;
+	}
+	public CellStatus getStatus() {
+		return status;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	@Override
+	public void setShip(Ship ship) {
+		this.ship = ship;
 	}
 
-	public int getX() {
-		return x;
+	@Override
+	public Ship getShip() {
+		return ship;
 	}
 
-	public int getY() {
-		return y;
+	@Override
+	public boolean hasShip() {
+		return ship != null;
 	}
 
-	public Ship getOccupyer() {
-		return occupyer;
+	@Override
+	public void clear() {
+		ship = null;
+		status = CellStatus.UNKNOWN;
 	}
-
-	public void setOccupyer(Ship occupyer) {
-		this.occupyer = occupyer;
-		status = CellStatus.OCCUPIED;
-	}
-
 }

@@ -4,52 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.IShip;
-import model.Enums.Orientation;
 
 public class Ship implements IShip {
 	
-	private List<Cell> cells;
+	private List<Coordinate> coords;
 	private int length;
 	
-	private Orientation orientation;
-	
 	public Ship(int length) {
-		orientation = Orientation.NOT_DEFINED;
 		this.length = length;
-		cells = new ArrayList<>(length);
-	}
-	public Ship(Orientation orient, int length) {
-		orientation = orient;
-		this.length = length;
-		cells = new ArrayList<>(length);
-	}
-	
-	public boolean isDestroyed() {
-		for (Cell each : cells) {
-			if (!each.isBombed()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public Orientation getOrientation() {
-		return orientation;
+		coords = new ArrayList<>(length);
 	}
 
-	public void setCells(List<Cell> cells) {
-		this.cells.clear();
-		for(Cell each : cells) {
-			if(each.getOccupyer() != null) {
-				throw new IllegalArgumentException("Cell is already occupied by another ship");
-			}
-			each.setOccupyer(this);
-			this.cells.add(each);
-		}
+	@Override
+	public void addCoordinate(Coordinate coord) {
+		coords.add(coord);
 	}
-	
-	public List<Cell> getCells() {
-		return cells;
+
+
+	@Override
+	public List<Coordinate> getCoordinates() {
+		return coords;
 	}
 
 	public int getLength() {

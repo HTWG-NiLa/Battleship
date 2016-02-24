@@ -1,5 +1,5 @@
 package model.Enums;
 
 public enum CellStatus {
-	EMPTY, OCCUPIED, BOMBED, DESTROYED, INVALID;
+	WATER, HIT, SHIP, DESTROYED_SHIP, UNKNOWN;
 }

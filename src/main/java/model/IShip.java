@@ -3,14 +3,13 @@ package model;
 import java.util.List;
 
 import model.impl.Cell;
+import model.impl.Coordinate;
 
 public interface IShip {
 	
-	boolean isDestroyed();
+	void addCoordinate(Coordinate coord);
 	
-	void setCells(List<Cell> cells);
-	
-	List<Cell> getCells();
+	List<Coordinate> getCoordinates();
 	
 	int getLength();
 

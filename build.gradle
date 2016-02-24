@@ -3,13 +3,17 @@ apply plugin: 'eclipse'
 apply plugin: 'maven'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
+dependencies {
+    testCompile('junit:junit:4.12')
+}
 task createPom << {
-	pom {
-		project {
-			inceptionYear '2015'
-		}
-	}.writeTo("pom.xml")
+    pom {
+        project {
+            inceptionYear '2015'
+        }
+    }.writeTo("pom.xml")
 }
