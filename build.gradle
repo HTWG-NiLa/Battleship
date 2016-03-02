@@ -8,6 +8,7 @@ repositories {
 }
 
 dependencies {
+    testCompile('commons-validator:commons-validator:1.4.0')
     testCompile('junit:junit:4.12')
 }
 task createPom << {

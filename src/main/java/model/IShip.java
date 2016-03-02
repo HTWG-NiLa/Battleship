@@ -7,9 +7,7 @@ import model.impl.Coordinate;
 
 public interface IShip {
 	
-	void addCoordinate(Coordinate coord);
-	
-	List<Coordinate> getCoordinates();
+	List<ICell> getCells();
 	
 	int getLength();
 

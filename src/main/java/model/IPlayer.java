@@ -1,13 +1,16 @@
 package model;
 
-import model.impl.Ship;
+import model.impl.Board;
+import model.impl.Fleet;
 
 public interface IPlayer {
 	
 	String getName();
 	
-	void setName(String name);
-	
-	Ship[] getShips();
+	Fleet getFleet();
 
+	void setEnemyBoard(IBoard board1);
+
+	IBoard getHomeBoard();
+	IBoard getEnemyBoard();
 }

@@ -7,13 +7,16 @@ public class Cell implements ICell {
 
 	private CellStatus status;
 	private Ship ship;
+	private Coordinate coord;
 
-	public Cell() {
+	public Cell(Coordinate coord) {
 		ship = null;
+		this.coord = coord;
 		status = CellStatus.WATER;
 	}
-	public Cell(CellStatus status) {
+	public Cell(CellStatus status, Coordinate coord) {
 		ship = null;
+		this.coord = coord;
 		this.status = status;
 	}
 
@@ -44,5 +47,10 @@ public class Cell implements ICell {
 	public void clear() {
 		ship = null;
 		status = CellStatus.UNKNOWN;
+	}
+
+	@Override
+	public Coordinate getCoordinate() {
+		return null;
 	}
 }
